@@ -9,6 +9,7 @@ COPY requirements.txt requirements.txt
 RUN python -m venv venv
 RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install wheel
+RUN venv/bin/pip install gunicorn pymysql
 RUN venv/bin/pip install Flask-Migrate
 RUN venv/bin/pip install -U python-dotenv
 RUN venv/bin/pip3 install gunicorn
@@ -16,7 +17,7 @@ RUN venv/bin/pip3 install gunicorn
 RUN venv/bin/pip3 install --no-cache-dir -r requirements.txt
 
 COPY flaskblog flaskblog
-COPY migrations migrations
+
 COPY run.py boot.sh ./
 RUN chmod +x boot.sh
 
